@@ -4,6 +4,11 @@
 // Pas besoin d'évenement window.onload puisqu'on utilise l'attribut defer
 // lorsque l'on charge notre script
 
+/**
+ * Load genres from the server and update the user interface.
+ * Modifies the select element with the genres and adds an event listener for genre change.
+ * @returns {Promise<void>}
+ */
 async function loadGenre() {
     const genreUrl = 'http://localhost:3000/genres';
     try {
@@ -51,6 +56,11 @@ async function loadGenre() {
     }
 }
 
+/**
+ * Load artists for the selected genre and update the user interface.
+ * Modifies the section title and description, and updates the genre top albums.
+ * @param {Object} genre - The selected genre object.
+ */
 async function loadArtists(genre) {
     // Modify section title
     const sectionTitle = document.querySelector('#main h2');
@@ -80,6 +90,7 @@ async function loadArtists(genre) {
         const artistDict = {};
         data.forEach(artist => {
             artistDict[artist.id] = {
+                id: artist.id,
                 genreId: artist.genreId,
                 name: artist.name,
                 photo: artist.photo,
@@ -98,15 +109,89 @@ async function loadArtists(genre) {
             const div = document.createElement('div');
             div.className = 'artist';
             div.innerHTML = `
-                <a href="#"><h3>${artist.name}</h3></a>
+                <a id="${artist.id}" href="#"><h3>${artist.name}</h3></a>
                 <img src="${artist.photo}" alt="${artist.name}">
             `;
+            const link = div.querySelector('a');
+            link.addEventListener('click', artistSelected);
             genreTopAlbums.appendChild(div);
         }
 
     } catch (error) {
         console.error(error.message);
     }
+}
+
+function artistSelected(event) {
+    event.preventDefault(); // Prevent default action of the link
+
+    const artistId = event.target.parentElement.id;
+    if (!artistId) {
+        return;
+    }
+    const albumURL = `http://localhost:3000/artists/${artistId}/albums`;
+    fetch(albumURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP : ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Convert JSON to dictionary with id name and cover
+            const albumDict = {};
+            data.forEach(album => {
+                albumDict[album.id] = {
+                    artistId: album.artistId,
+                    year: album.year,
+                    title: album.title,
+                    label: album.label,
+                    cover: album.cover,
+                };
+            });
+
+            // Fill the album table
+            let albumTable = document.querySelector('#albums table tbody');
+            if (!albumTable) {
+                console.error('Album table not found');
+                return;
+            }
+            albumTable.innerHTML = '';
+            for (const [id, album] of Object.entries(albumDict)) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img style="height: 50px" src="${album.cover}" alt="${album.title}"></td>
+                    <td>${album.title}</td>
+                    <td>${album.year}</td>
+                    <td>${album.label}</td>
+                `;
+                albumTable.appendChild(tr);
+            }
+
+            // Update the album section style
+            const albumSection = document.querySelector('#albums');
+            albumSection.style.visibility = 'visible';
+            albumSection.style.opacity = '1';
+
+            const { clientWidth: bodyWidth, clientHeight: bodyHeight } = document.body;
+            const { clientWidth: popupWidth, clientHeight: popupHeight } = albumSection;
+
+            albumSection.style.top = `${(bodyHeight - popupHeight) / 2}px`;
+            albumSection.style.left = `${(bodyWidth - popupWidth) / 2}px`;
+
+            // Modify button event
+            const closeButton = document.querySelector('#ok-button');
+            closeButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                albumSection.style.opacity = '0';
+                setTimeout(() => {
+                    albumSection.style.visibility = 'hidden';
+                }, 200);
+            });
+        })
+        .catch(error => {
+            console.error(error.message);
+        });
 }
 
 loadGenre()
