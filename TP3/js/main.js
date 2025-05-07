@@ -16,11 +16,29 @@ function loadGenre() {
         })
         .then(data => {
             console.log('Data :', data);
+            // Update the select element with the genres
+            let selectGenre = document.getElementById('select-genre');
+            if (!selectGenre) {
+                console.error('Select element not found');
+                return;
+            }
+
+            data.forEach(genre => {
+                const option = document.createElement('option');
+                option.value = genre.id;
+                option.textContent = genre.name;
+                selectGenre.appendChild(option);
+            });
+            // Add event listener for genre change
+            selectGenre.addEventListener('change', (event) => {
+                console.log('Selected genre:', event.target.value);
+            });
         })
         .catch(error => {
-            console.error('Erreur lors de la récupération des genres :', error.message);
+            console.error(error.message);
         });
 }
+
 
 loadGenre()
 
