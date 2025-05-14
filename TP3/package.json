@@ -15,6 +15,7 @@
     "test": "gulp",
     "start": "json-server db.json --watch"
   },
-  "author": "",
+  "author": "Alexys Gromard",
+  "atour": "Lancelot Joault",
   "license": "ISC"
 }
