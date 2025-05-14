@@ -36,3 +36,7 @@ Ce dépôt contient les travaux pratiques n°3 et n°4 réalisés dans le cadre 
    ```
 
 Vous pouvez maintenant accéder à l'application via votre navigateur à l'adresse suivante : `http://localhost:3002/`. De plus, vous aurez accès à la documentation de l'API à l'adresse suivante : `http://http://localhost:3000//`.
+
+## 👨‍🔬 Auteurs
+- Alexys Gromard : [Github](https://github.com/AlexysGromard)
+- Lancelot Jouault : [Github](https://github.com/IIXIVII)
