@@ -12,7 +12,7 @@ Ce dépôt contient les travaux pratiques n°3 et n°4 réalisés dans le cadre 
 ### TP3
 1. Clonez le dépôt :
    ```bash
-   git clone 
+   git clone https://github.com/AlexysGromard/S6-Technologies_web.git
    ```
 2. Accédez au répertoire du projet :
    ```bash
