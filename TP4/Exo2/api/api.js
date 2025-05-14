@@ -19,11 +19,10 @@ app.route('/genres')
             .json(data.genres)
             .end();
         return res;
-        }
-    )
+    });
 
 
-app.route('/genre/:id/artists')
+app.route('/genres/:id/artists')
     .get((req, res) => {
         const id = req.params.id;
         const artists = data.artists.filter(artist => artist.genreId === id);
@@ -35,7 +34,7 @@ app.route('/genre/:id/artists')
             return res;
         }
         res.status(200)
-            .json(artists[0])
+            .json(artists)
             .end();
         return res;
         }
@@ -43,7 +42,7 @@ app.route('/genre/:id/artists')
 
 
 
-app.route('/artist/:id/album')
+app.route('/artists/:id/albums')
     .get((req, res) => {
         const id = req.params.id;
         const albums = data.albums.filter(album => album.artistId === id);
@@ -55,7 +54,7 @@ app.route('/artist/:id/album')
             return res;
         }
         res.status(200)
-            .json(albums[0])
+            .json(albums)
             .end();
         return res;
         }

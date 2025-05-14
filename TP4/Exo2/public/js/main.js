@@ -7,7 +7,7 @@
  * @returns {Promise<void>}
  */
 async function loadGenre() {
-    const genreUrl = 'http://localhost:3000/genres';
+    const genreUrl = 'http://localhost:8080/api/genres';
     try {
         const response = await fetch(genreUrl);
         if (!response.ok) {
@@ -76,7 +76,7 @@ async function loadArtists(genre) {
     }
     sectionDescription.textContent = genre.description;
 
-    const artistUrl = `http://localhost:3000/genres/${genre.id}/artists`;
+    const artistUrl = `http://localhost:8080/api/genres/${genre.id}/artists`;
     try {
         const response = await fetch(artistUrl);
         if (!response.ok) {
@@ -132,7 +132,7 @@ function artistSelected(event) {
     if (!artistId) {
         return;
     }
-    const albumURL = `http://localhost:3000/artists/${artistId}/albums`;
+    const albumURL = `http://localhost:8080/api/artists/${artistId}/albums`;
     fetch(albumURL)
         .then(response => {
             if (!response.ok) {
