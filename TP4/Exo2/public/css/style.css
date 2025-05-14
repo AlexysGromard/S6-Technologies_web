@@ -41,6 +41,26 @@ header{
   display: inline-block;
 }
 
+#genre-top-albums{
+  display: flex;
+  gap: 10px;
+}
+
+.artist{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px grey;
+  padding: 0.5em;
+}
+.artist a{
+  text-decoration: none;
+  color: rgb(60, 136, 190);
+}
+.artist img{
+  height: 200px;
+}
+
 #albums{
   visibility: hidden;
   width:500px;
@@ -49,7 +69,20 @@ header{
   text-align: center;
   border: solid 1px black;
   opacity: 0;
-  padding-bottom: 0.5em
+  padding-bottom: 0.5em;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#albums h2{
+  margin: 0;
+  background-color: rgb(60, 136, 190);
+  color: white;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
 }
 
 footer{

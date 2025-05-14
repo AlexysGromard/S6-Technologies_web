@@ -1,9 +1,6 @@
 'use strict';
 /* eslint-env browser, es6 */
 
-// Pas besoin d'évenement window.onload puisqu'on utilise l'attribut defer
-// lorsque l'on charge notre script
-
 /**
  * Load genres from the server and update the user interface.
  * Modifies the select element with the genres and adds an event listener for genre change.
@@ -23,12 +20,12 @@ async function loadGenre() {
         data.forEach(genre => {
             genreDict[genre.id] = {
                 name: genre.name,
-                description: genre.description
+                description: genre.description,
             };
         });
 
         // Update the select element with the genres
-        let selectGenre = document.getElementById('select-genre');
+        const selectGenre = document.getElementById('select-genre');
         if (!selectGenre) {
             console.error('Select element not found');
             return;
@@ -51,7 +48,8 @@ async function loadGenre() {
                 }
             });
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error(error.message);
     }
 }
@@ -98,14 +96,14 @@ async function loadArtists(genre) {
         });
 
         // Update genre top album
-        let genreTopAlbums = document.querySelector('#genre-top-albums');
+        const genreTopAlbums = document.querySelector('#genre-top-albums');
         if (!genreTopAlbums) {
             console.error('Genre top album not found');
             return;
         }
         genreTopAlbums.innerHTML = '';
 
-        for (const [id, artist] of Object.entries(artistDict)) {
+        for (const [, artist] of Object.entries(artistDict)) {
             const div = document.createElement('div');
             div.className = 'artist';
             div.innerHTML = `
@@ -117,11 +115,16 @@ async function loadArtists(genre) {
             genreTopAlbums.appendChild(div);
         }
 
-    } catch (error) {
+    }
+    catch (error) {
         console.error(error.message);
     }
 }
 
+/**
+ * Load albums for the selected artist and update the user interface.
+ * @param {Event} event - The click event on the artist link.
+ */
 function artistSelected(event) {
     event.preventDefault(); // Prevent default action of the link
 
@@ -151,13 +154,13 @@ function artistSelected(event) {
             });
 
             // Fill the album table
-            let albumTable = document.querySelector('#albums table tbody');
+            const albumTable = document.querySelector('#albums table tbody');
             if (!albumTable) {
                 console.error('Album table not found');
                 return;
             }
             albumTable.innerHTML = '';
-            for (const [id, album] of Object.entries(albumDict)) {
+            for (const [, album] of Object.entries(albumDict)) {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><img style="height: 50px" src="${album.cover}" alt="${album.title}"></td>
@@ -173,8 +176,8 @@ function artistSelected(event) {
             albumSection.style.visibility = 'visible';
             albumSection.style.opacity = '1';
 
-            const { clientWidth: bodyWidth, clientHeight: bodyHeight } = document.body;
-            const { clientWidth: popupWidth, clientHeight: popupHeight } = albumSection;
+            const {clientWidth: bodyWidth, clientHeight: bodyHeight} = document.body;
+            const {clientWidth: popupWidth, clientHeight: popupHeight} = albumSection;
 
             albumSection.style.top = `${(bodyHeight - popupHeight) / 2}px`;
             albumSection.style.left = `${(bodyWidth - popupWidth) / 2}px`;
@@ -194,6 +197,6 @@ function artistSelected(event) {
         });
 }
 
-loadGenre()
+loadGenre();
 
 console.log('JS file successfully loaded');

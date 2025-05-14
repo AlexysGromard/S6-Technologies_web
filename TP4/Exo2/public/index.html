@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Notre page est en anglais -->
-
 <head>
     <!-- Il est obligatoire de préciser un encodage de caractères et un titre pour la page -->
     <meta charset="utf-8">
@@ -32,12 +31,12 @@
             <nav>
                 <p>Please select your genre:</p>
                 <form>
-                    <select></select>
+                    <select id="select-genre"></select>
                     <!-- liste des genres -->
                 </form>
             </nav>
-            <p>Genre description</p>
-            <ul></ul>
+            <p id="genre-desc">Genre description</p>
+            <ul id="genre-top-albums"></ul>
             <!-- liste des top albums du genre -->
         </section>
 
@@ -58,7 +57,7 @@
                 <tbody>
                 </tbody>
             </table>
-            <form><button>Ok</button></form>
+            <form><button id="ok-button">Ok</button></form>
         </aside>
 
         <!-- Notre pied de page -->
@@ -66,6 +65,6 @@
             <p>Copyright Polytech team</p>
         </footer>
     </div>
+    <script src="js/main.js"></script>
 </body>
-
 </html>
