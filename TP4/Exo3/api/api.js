@@ -22,31 +22,41 @@ const value = require('./data/db.json');
 
 app.route('/genres')
     .get((req, res) => {
-        // requete pour recuperer les genres
-        fetch(" http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=2c08f218f45c6f367a0f4d2b350bbffc&format=json")    
-        .then(response => response.json()) // Convertir la réponse en JSON
-        .then(data => {
-            // Traiter les données ici
+        fetch('http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=2c08f218f45c6f367a0f4d2b350bbffc&format=json')
+            .then(response => response.json())
+            .then(data => {
+                const tags = data.toptags.tag.slice(0, 10); // Limiter à 10 genres
 
-            res.status(200)
-                .json(data)
-                .end();
-            return res;
-        },
-        ).catch(error => {
-            console.error('Erreur lors de la récupération des genres:', error);
-            res.status(500)
-                .json({message: 'Erreur lors de la récupération des genres'})
-                .end();
-            return res;
-        }
-        );
+                // Créer un tableau de Promises pour les sous-requêtes
+                const promises = tags.map(genre => {
+                    return fetch(`http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&tag=${encodeURIComponent(genre.name)}&api_key=2c08f218f45c6f367a0f4d2b350bbffc&format=json`)
+                        .then(response => response.json())
+                        .then(infoData => {
+                            return {
+                                name: genre.name,
+                                count: genre.count,
+                                reach: genre.reach,
+                                description: infoData.tag.wiki.summary || null,
+                            };
+                        });
+                });
 
-   
+                // Attendre toutes les sous-requêtes
+                Promise.all(promises)
+                    .then(results => {
+                        res.status(200).json(results).end();
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors des sous-requêtes :', error);
+                        res.status(500).json({message: 'Erreur lors des sous-requêtes'}).end();
+                    });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des genres :', error);
+                res.status(500).json({message: 'Erreur lors de la récupération des genres'}).end();
+            });
+    });
 
-
-        },
-    );
 
 
 app.route('/genre/:id/artists')
