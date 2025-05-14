@@ -40,3 +40,15 @@ Vous pouvez maintenant accéder à l'application via votre navigateur à l'adres
 ## 👨‍🔬 Auteurs
 - Alexys Gromard : [Github](https://github.com/AlexysGromard)
 - Lancelot Jouault : [Github](https://github.com/IIXIVII)
+
+
+## 📜 Licence
+Copyright © 2025 Alexys Gromard
+
+Tous droits réservés.
+
+Ce projet, y compris l'ensemble de son contenu (code source, documentation, fichiers, etc.), est strictement réservé à un usage interne à **Polytech Nantes**. Toute reproduction, distribution, modification ou utilisation du contenu en dehors de ce cadre est formellement interdite sans autorisation écrite préalable de l’auteur.
+
+Les fichiers **.PDF** présents dans ce dépôt sont également soumis à ces restrictions. Ils ne peuvent en aucun cas être rediffusés, reproduits ou réutilisés, partiellement ou totalement, sans l’accord explicite d’Alexys Gromard.
+
+En accédant à ce dépôt, vous acceptez ces conditions d’utilisation. Toute infraction pourra donner lieu à des poursuites.
