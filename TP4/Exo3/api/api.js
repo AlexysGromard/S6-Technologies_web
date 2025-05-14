@@ -15,5 +15,80 @@ if ( process.env.HTTPS_PROXY === undefined && process.env.http_proxy !== undefin
 // permet aux requêtes fetch de fonctionner même si un proxy est configuré (réseau de l'université)
 globalagent.bootstrap({environmentVariableNamespace: ''});
 
+// devrait etre mis dans un dao pour bien faire avec des dataclass et le dao pour faire les requete pour separer ou selectionne les donnees et un controleur pour les recuperer
+const value = require('./data/db.json');
+
+
+
+app.route('/genres')
+    .get((req, res) => {
+        // requete pour recuperer les genres
+        fetch(" http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags&api_key=2c08f218f45c6f367a0f4d2b350bbffc&format=json")    
+        .then(response => response.json()) // Convertir la réponse en JSON
+        .then(data => {
+            // Traiter les données ici
+
+            res.status(200)
+                .json(data)
+                .end();
+            return res;
+        },
+        ).catch(error => {
+            console.error('Erreur lors de la récupération des genres:', error);
+            res.status(500)
+                .json({message: 'Erreur lors de la récupération des genres'})
+                .end();
+            return res;
+        }
+        );
+
+   
+
+
+        },
+    );
+
+
+app.route('/genre/:id/artists')
+    .get((req, res) => {
+        const id = req.params.id;
+        const artists = value.artists.filter(artist => artist.genreId === id);
+
+        if (artists.length === 0) {
+            res.status(404)
+                .json({message: 'Aucun artiste trouvé pour ce genre'})
+                .end();
+            return res;
+        }
+        res.status(200)
+            .json(artists[0])
+            .end();
+        return res;
+        },
+    );
+
+
+
+app.route('/artist/:id/album')
+    .get((req, res) => {
+        const id = req.params.id;
+        const albums = value.albums.filter(album => album.artistId === id);
+
+        if (albums.length === 0) {
+            res.status(404)
+                .json({message: 'Aucun album trouvé pour cet artiste'})
+                .end();
+            return res;
+        }
+        res.status(200)
+            .json(albums[0])
+            .end();
+        return res;
+        },
+    );
+
 // export de notre application vers le serveur principal
 module.exports = app;
+
+
+

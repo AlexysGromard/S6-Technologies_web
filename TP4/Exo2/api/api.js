@@ -13,14 +13,13 @@ const data = require('./data/db.json');
 
 
 app.route('/genres')
-
     .get((req, res) => {
         res.status(200)
             .json(data.genres)
             .end();
         return res;
-        }
-    )
+        },
+    );
 
 
 app.route('/genre/:id/artists')
@@ -30,7 +29,7 @@ app.route('/genre/:id/artists')
 
         if (artists.length === 0) {
             res.status(404)
-                .json({ message: 'Aucun artiste trouvé pour ce genre' })
+                .json({message: 'Aucun artiste trouvé pour ce genre'})
                 .end();
             return res;
         }
@@ -38,8 +37,8 @@ app.route('/genre/:id/artists')
             .json(artists[0])
             .end();
         return res;
-        }
-    )
+        },
+    );
 
 
 
@@ -50,7 +49,7 @@ app.route('/artist/:id/album')
 
         if (albums.length === 0) {
             res.status(404)
-                .json({ message: 'Aucun album trouvé pour cet artiste' })
+                .json({message: 'Aucun album trouvé pour cet artiste'})
                 .end();
             return res;
         }
@@ -58,8 +57,9 @@ app.route('/artist/:id/album')
             .json(albums[0])
             .end();
         return res;
-        }
-    )
+        },
+    );
 
 // export de notre application vers le serveur principal
 module.exports = app;
+
