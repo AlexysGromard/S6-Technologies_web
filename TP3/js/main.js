@@ -1,9 +1,6 @@
 'use strict';
 /* eslint-env browser, es6 */
 
-// Pas besoin d'évenement window.onload puisqu'on utilise l'attribut defer
-// lorsque l'on charge notre script
-
 /**
  * Load genres from the server and update the user interface.
  * Modifies the select element with the genres and adds an event listener for genre change.
@@ -124,6 +121,10 @@ async function loadArtists(genre) {
     }
 }
 
+/**
+ * Load albums for the selected artist and update the user interface.
+ * @param {Event} event - The click event on the artist link.
+ */
 function artistSelected(event) {
     event.preventDefault(); // Prevent default action of the link
 
