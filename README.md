@@ -49,6 +49,6 @@ Tous droits réservés.
 
 Ce projet, y compris l'ensemble de son contenu (code source, documentation, fichiers, etc.), est strictement réservé à un usage interne à **Polytech Nantes**. Toute reproduction, distribution, modification ou utilisation du contenu en dehors de ce cadre est formellement interdite sans autorisation écrite préalable de l’auteur.
 
-Les fichiers **.PDF** présents dans ce dépôt sont également soumis à ces restrictions. Ils ne peuvent en aucun cas être rediffusés, reproduits ou réutilisés, partiellement ou totalement, sans l’accord explicite d’Alexys Gromard.
+Les fichiers **.PDF** présents dans ce dépôt sont également soumis à ces restrictions. Ils ne peuvent en aucun cas être rediffusés, reproduits ou réutilisés, partiellement ou totalement, sans l’accord explicite de Polytech Nantes.
 
 En accédant à ce dépôt, vous acceptez ces conditions d’utilisation. Toute infraction pourra donner lieu à des poursuites.
