@@ -29,7 +29,7 @@ app.route('/genres/:id/artists')
 
         if (artists.length === 0) {
             res.status(404)
-                .json({ message: 'Aucun artiste trouvé pour ce genre' })
+                .json({message: 'Aucun artiste trouvé pour ce genre'})
                 .end();
             return res;
         }
@@ -37,8 +37,7 @@ app.route('/genres/:id/artists')
             .json(artists)
             .end();
         return res;
-        }
-    )
+    });
 
 
 
@@ -49,7 +48,7 @@ app.route('/artists/:id/albums')
 
         if (albums.length === 0) {
             res.status(404)
-                .json({ message: 'Aucun album trouvé pour cet artiste' })
+                .json({message: 'Aucun album trouvé pour cet artiste'})
                 .end();
             return res;
         }
@@ -57,8 +56,7 @@ app.route('/artists/:id/albums')
             .json(albums)
             .end();
         return res;
-        }
-    )
+    });
 
 // export de notre application vers le serveur principal
 module.exports = app;
