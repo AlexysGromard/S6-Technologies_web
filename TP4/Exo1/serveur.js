@@ -3,11 +3,9 @@
  * @author Lancelot JOUAULT
  * @author Alexys GROMARD
  * @date 2025-07-05
- * 
  * @doc
  * @link https://nodejs.org/api/buffer.html#static-method-bufferbytelengthstring-encoding
  * @link https://node-js.fr/server/
- * 
  * @description Serveur web simple - exo 1
  */
 
