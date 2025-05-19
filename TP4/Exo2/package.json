@@ -18,5 +18,17 @@
     "gulp-watch": "^5.0.1",
     "map-stream": "0.0.7",
     "nodemon": "^2.0.3"
-  }
+  },
+  "author": "Alexys Gromard <alexys.gromard@etu.univ-nantes.fr>",
+  "contributors": [
+    {
+      "name": "Alexys Gromard",
+      "email": "alexys.gromard@etu.univ-nantes.fr"
+    },
+    {
+      "name": "Lancelot Jouault",
+      "email": "lancelot.jouault@etu.univ-nantes.fr"
+    }
+  ],
+
 }

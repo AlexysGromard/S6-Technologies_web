@@ -15,7 +15,16 @@
     "test": "gulp",
     "start": "json-server db.json --watch"
   },
-  "author": "Alexys Gromard",
-  "atour": "Lancelot Joault",
+  "author": "Alexys Gromard <alexys.gromard@etu.univ-nantes.fr>",
+  "contributors": [
+    {
+      "name": "Alexys Gromard",
+      "email": "alexys.gromard@etu.univ-nantes.fr"
+    },
+    {
+      "name": "Lancelot Jouault",
+      "email": "lancelot.jouault@etu.univ-nantes.fr"
+    }
+  ],
   "license": "ISC"
 }

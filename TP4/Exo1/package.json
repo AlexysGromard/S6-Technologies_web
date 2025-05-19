@@ -20,5 +20,17 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "author": "Alexys Gromard <alexys.gromard@etu.univ-nantes.fr>",
+  "contributors": [
+    {
+      "name": "Alexys Gromard",
+      "email": "alexys.gromard@etu.univ-nantes.fr"
+    },
+    {
+      "name": "Lancelot Jouault",
+      "email": "lancelot.jouault@etu.univ-nantes.fr"
+    }
+  ],
+
 }

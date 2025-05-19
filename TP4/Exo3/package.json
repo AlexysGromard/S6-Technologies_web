@@ -23,5 +23,17 @@
     "urlencode": "^1.1.0",
     "xmldom": "^0.3.0",
     "xpath": "0.0.27"
-  }
+  },
+  "author": "Alexys Gromard <alexys.gromard@etu.univ-nantes.fr>",
+  "contributors": [
+    {
+      "name": "Alexys Gromard",
+      "email": "alexys.gromard@etu.univ-nantes.fr"
+    },
+    {
+      "name": "Lancelot Jouault",
+      "email": "lancelot.jouault@etu.univ-nantes.fr"
+    }
+  ],
+
 }
