@@ -74,8 +74,7 @@ app.route('/genre/:id/artists')
             .json(artists[0])
             .end();
         return res;
-        },
-    );
+    });
 
 
 
@@ -94,8 +93,7 @@ app.route('/artist/:id/album')
             .json(albums[0])
             .end();
         return res;
-        },
-    );
+    });
 
 // export de notre application vers le serveur principal
 module.exports = app;

@@ -36,8 +36,7 @@ app.route('/genres/:id/artists')
             .json(artists)
             .end();
         return res;
-        }
-    )
+    });
 
 
 
